@@ -10,9 +10,9 @@ import java.util.Comparator;
  * @author Ilyin Dmitry
  */
 public class MyCalculator {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-            System.out.println("Введите номер задания (1 - запустить выполнение калькулятора, 2 - поиск максимального слова в массиве)");
+            System.out.print("Введите номер задания (1 - запустить выполнение калькулятора, 2 - поиск максимального слова в массиве) : ");
             boolean condition = switch (reader.readLine()) {
                 case "1" -> true;
                 case "2" -> false;
@@ -30,11 +30,11 @@ public class MyCalculator {
                 symbol = reader.readLine();
                 action(num1, num2, symbol);
             } else {
-                System.out.println("Введите количество слов");
+                System.out.print("Введите количество слов : ");
                 int sizeArray = Integer.parseInt(reader.readLine());
                 String[] array = new String[sizeArray];
                 for (int i = 0; i < sizeArray; i++) {
-                    System.out.println("Введите слово №" + i);
+                    System.out.print("Введите слово №" + (i + 1) + " : ");
                     array[i] = reader.readLine();
                 }
                 String word = Arrays.stream(array)
