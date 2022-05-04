@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Comparator;
 
 /**
  * Класс калькулятор
@@ -10,19 +12,42 @@ import java.io.InputStreamReader;
 public class MyCalculator {
     public static void main(String[] args) throws IOException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-            double num1, num2;
-            String symbol;
-            System.out.print("Введите первое число : ");
-            num1 = Double.parseDouble(reader.readLine());
-            System.out.print("Введите второе число : ");
-            num2 = Double.parseDouble(reader.readLine());
-            System.out.print("Введите операцию : ");
-            symbol = reader.readLine();
-            action(num1, num2, symbol);
+            System.out.println("Введите номер задания (1 - запустить выполнение калькулятора, 2 - поиск максимального слова в массиве)");
+            boolean condition = switch (reader.readLine()) {
+                case "1" -> true;
+                case "2" -> false;
+                default -> throw new Exception("Ввели неверное число");
+            };
+
+            if (condition) {
+                double num1, num2;
+                String symbol;
+                System.out.print("Введите первое число : ");
+                num1 = Double.parseDouble(reader.readLine());
+                System.out.print("Введите второе число : ");
+                num2 = Double.parseDouble(reader.readLine());
+                System.out.print("Введите операцию : ");
+                symbol = reader.readLine();
+                action(num1, num2, symbol);
+            } else {
+                System.out.println("Введите количество слов");
+                int sizeArray = Integer.parseInt(reader.readLine());
+                String[] array = new String[sizeArray];
+                for (int i = 0; i < sizeArray; i++) {
+                    System.out.println("Введите слово №" + i);
+                    array[i] = reader.readLine();
+                }
+                String word = Arrays.stream(array)
+                        .max(Comparator.comparingInt(String::length))
+                        .orElseThrow();
+                System.out.println("Самое длинное слово" + word);
+            }
         } catch (NumberFormatException e) {
             System.out.println("Ошибка! Вы ввели не число");
         } catch (ArithmeticException e) {
             System.out.println("Ошибка! На ноль делить нельзя");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
