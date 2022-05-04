@@ -39,13 +39,15 @@ public class MyCalculator {
                 }
                 String word = Arrays.stream(array)
                         .max(Comparator.comparingInt(String::length))
-                        .orElseThrow();
-                System.out.println("Самое длинное слово" + word);
+                        .orElseThrow(NegativeArraySizeException::new);
+                System.out.println("Самое длинное слово : " + word);
             }
         } catch (NumberFormatException e) {
             System.out.println("Ошибка! Вы ввели не число");
         } catch (ArithmeticException e) {
             System.out.println("Ошибка! На ноль делить нельзя");
+        }catch (NegativeArraySizeException e) {
+            System.out.println("Ошибка! Размер массива должен быть больше 0");
         } catch (Exception e) {
             e.printStackTrace();
         }
