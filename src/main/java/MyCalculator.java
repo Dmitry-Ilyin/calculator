@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -46,7 +45,7 @@ public class MyCalculator {
             System.out.println("Ошибка! Вы ввели не число");
         } catch (ArithmeticException e) {
             System.out.println("Ошибка! На ноль делить нельзя");
-        }catch (NegativeArraySizeException e) {
+        } catch (NegativeArraySizeException e) {
             System.out.println("Ошибка! Размер массива должен быть больше 0");
         } catch (Exception e) {
             e.printStackTrace();
