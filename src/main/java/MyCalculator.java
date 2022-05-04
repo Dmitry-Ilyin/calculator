@@ -4,6 +4,7 @@ import java.io.InputStreamReader;
 
 /**
  * Класс калькулятор
+ *
  * @author Ilyin Dmitry
  */
 public class MyCalculator {
@@ -21,10 +22,9 @@ public class MyCalculator {
             action(num1, num2, symbol);
         } catch (NumberFormatException e) {
             System.out.println("Ошибка! Вы ввели не число");
-        } catch (ArithmeticException e ) {
-            System.out.println("Вы ввели неверный знак");
+        } catch (ArithmeticException e) {
+            System.out.println("Ошибка! На ноль делить нельзя");
         }
-
     }
 
     /**
@@ -46,10 +46,12 @@ public class MyCalculator {
                 result = param1 * param2;
                 break;
             case "/":
+                if (param2 == 0)
+                    throw new ArithmeticException();
                 result = param1 / param2;
                 break;
             default:
-                throw new IllegalArgumentException("Ошибка. Вы ввели некорректный знак");
+                throw new IllegalArgumentException("Ошибка! Вы ввели некорректный знак");
         }
         System.out.printf("Результат : %.4f", result);
     }
