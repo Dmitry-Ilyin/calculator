@@ -9,10 +9,9 @@ import java.io.InputStreamReader;
  */
 public class MyCalculator {
     public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        double num1, num2;
-        String symbol;
-        try {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+            double num1, num2;
+            String symbol;
             System.out.print("Введите первое число : ");
             num1 = Double.parseDouble(reader.readLine());
             System.out.print("Введите второе число : ");
