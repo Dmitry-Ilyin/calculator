@@ -59,25 +59,16 @@ public class MyCalculator {
      * @throws ArithmeticException
      */
     public static void action(double param1, double param2, String symbol) throws ArithmeticException {
-        double result;
-        switch (symbol) {
-            case "+":
-                result = param1 + param2;
-                break;
-            case "-":
-                result = param1 - param2;
-                break;
-            case "*":
-                result = param1 * param2;
-                break;
-            case "/":
-                if (param2 == 0)
-                    throw new ArithmeticException();
-                result = param1 / param2;
-                break;
-            default:
-                throw new IllegalArgumentException("Ошибка! Вы ввели некорректный знак");
-        }
+        if(param2 == 0 && symbol.equals("/"))
+            throw new ArithmeticException();
+
+        double result = switch (symbol) {
+            case "+" -> param1 + param2;
+            case "-" -> param1 - param2;
+            case "*" -> param1 * param2;
+            case "/" -> param1 / param2;
+            default -> throw new IllegalArgumentException("Ошибка! Вы ввели некорректный знак");
+        };
         System.out.printf("Результат : %.4f", result);
     }
 }
